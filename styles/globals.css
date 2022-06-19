@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body,
+html {
+  font-family: 'Poppins';
+}
+
+h2 {
+  @apply text-[46px] text-primary-text-color font-bold;
+}
+
+h4 {
+  @apply text-[20px] font-bold;
+}
+
+p {
+  @apply text-[16px] text-primary-text-color;
+  opacity: 0.6;
+}
