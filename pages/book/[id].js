@@ -4,9 +4,9 @@ import Image from 'next/image'
 
 import moment from 'moment'
 
-import SocialIconLinks from '../../components/sociallinks'
-import Calendar from '../../components/calendar'
-import Schedule from '../../components/schedule'
+import SocialIconLinks from '/components/sociallinks'
+import Calendar from '/components/calendar'
+import Schedule from '/components/schedule'
 
 const BookPage = () => {
   const router = useRouter()

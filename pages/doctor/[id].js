@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-import SocialIconLink from '../../components/sociallinks'
-import Button from '../../components/button'
+import SocialIconLink from '/components/sociallinks'
+import Button from '/components/button'
 
 const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
 

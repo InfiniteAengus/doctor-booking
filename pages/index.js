@@ -1,6 +1,6 @@
-import DoctorItem from '../components/doctorItem'
-import doctors from '../mockup/doctors'
-import styles from '../styles/Home.module.css'
+import DoctorItem from '/components/doctorItem'
+import doctors from '/mockup/doctors'
+import styles from '/styles/Home.module.css'
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import Footer from '../layout/Footer'
-import Header from '../layout/Header'
-import '../styles/globals.scss'
+import Footer from '/layout/Footer'
+import Header from '/layout/Header'
+import '/styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (
