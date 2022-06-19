@@ -12,7 +12,7 @@ const Footer = () => {
             <div>
               <h4>Services</h4>
               {Object.keys(companyLinks).map((k) => (
-                <Link key={k} href={companyLinks[k]}>
+                <Link key={`service_${k}`} href={companyLinks[k]}>
                   <a>
                     <p className='text-white'>{k}</p>
                   </a>
@@ -22,7 +22,7 @@ const Footer = () => {
             <div>
               <h4>Links</h4>
               {Object.keys(companyLinks).map((k) => (
-                <Link key={k} href={companyLinks[k]}>
+                <Link key={`link_${k}`} href={companyLinks[k]}>
                   <a>
                     <p className='text-white'>{k}</p>
                   </a>
@@ -32,7 +32,7 @@ const Footer = () => {
             <div>
               <h4>Company</h4>
               {Object.keys(companyLinks).map((k) => (
-                <Link key={k} href={companyLinks[k]}>
+                <Link key={`company_${k}`} href={companyLinks[k]}>
                   <a>
                     <p className='text-white'>{k}</p>
                   </a>

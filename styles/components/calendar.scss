@@ -1,0 +1,40 @@
+.calendar {
+  @apply rounded-md border-[1px] shadow-[3px_3px_10px_5px_rgba(0,0,0,.1)] pt-5;
+
+  .calendar-header {
+    @apply flex justify-between px-10;
+  }
+
+  .calendar-body {
+    @apply grid grid-cols-7 mt-5;
+
+    .week-day {
+      @apply border-b-2 p-2;
+    }
+    
+    .calendar-day {
+      @apply min-h-[100px] cursor-default flex justify-center items-end border-b-[1px] py-2;
+
+      .calendar-day-span {
+        @apply flex items-center justify-center w-10 h-10 rounded-full text-primary-component-color bg-primary-component-color bg-opacity-20;
+        @apply transition-all;
+
+        &:hover {
+          @apply bg-opacity-30;
+        }
+      }
+
+      &.disabled {
+        .calendar-day-span {
+          @apply bg-gray-200 bg-opacity-100 text-gray-500;
+        }
+      }
+
+      &.selected {
+        .calendar-day-span {
+          @apply bg-opacity-100 text-white;
+        }
+      }
+    }
+  }
+}

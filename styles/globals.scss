@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './components/calendar.scss';
+@import './components/input.scss';
+
+body,
+html {
+  font-family: 'Poppins';
+  @apply text-primary-text-color;
+}
+
+h2 {
+  @apply text-[46px] font-bold;
+}
+
+h3 {
+  @apply text-[36px] font-bold;
+}
+
+h4 {
+  @apply text-[20px] font-bold;
+}
+
+p {
+  @apply text-[16px];
+  opacity: 0.6;
+}

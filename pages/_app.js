@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Footer from '../layout/Footer'
 import Header from '../layout/Header'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Header />
-      <main className='min-h-[calc(100vh-264px)]'>
+      <main className='min-h-[calc(100vh-270px)] box-border'>
         <div className='container p-20'>
           <Component {...pageProps} />
         </div>

@@ -2,16 +2,20 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-const SocialIconLink = (props) => {
-  const { type } = props
+import SocialIconLink from '../../components/sociallinks'
+import Button from '../../components/button'
+
+const weekDays = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN']
+
+const Availability = (props) => {
+  const { weekDay, start, end } = props
 
   return (
-    <div className='bg-primary-theme-color w-8 h-8 rounded-full flex items-center justify-center p-2'>
-      <Link href='/'>
-        <a>
-          <img src={`/icons/${type}.svg`} alt={type} />
-        </a>
-      </Link>
+    <div className='border-2 p-2 bg-secondary-theme-color rounded-md bg-opacity-90 text-white'>
+      <h5>{weekDay}</h5>
+      <p>
+        {start} - {end}
+      </p>
     </div>
   )
 }
@@ -75,10 +79,14 @@ const DoctorPage = () => {
   })
   const { id } = router.query
 
+  const handleClick = () => {
+    router.push(`/book/${id}`)
+  }
+
   return (
-    <div className='flex flex-col md:flex-row gap-8 items-center'>
+    <div className='flex flex-col lg:flex-row gap-8 items-center'>
       <img src='/doctors/doctor_3.png' alt='doctor' />
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-5 items-center lg:items-baseline'>
         <h2>{info.name}</h2>
         <p>{info.description}</p>
         <p>
@@ -90,6 +98,21 @@ const DoctorPage = () => {
           <SocialIconLink type='facebook' />
           <SocialIconLink type='google' />
           <SocialIconLink type='instagram' />
+        </div>
+        <Button text='Book Now' handleClick={handleClick} />
+      </div>
+
+      <div>
+        <h4>Availability</h4>
+        <div className='flex gap-2 flex-row lg:flex-col'>
+          {info.opening_hours.map((day) => (
+            <Availability
+              key={day}
+              weekDay={day.day}
+              start={day.start}
+              end={day.end}
+            />
+          ))}
         </div>
       </div>
     </div>
