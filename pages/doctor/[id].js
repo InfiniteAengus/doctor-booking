@@ -41,8 +41,10 @@ const DoctorPage = () => {
   }
 
   useEffect(() => {
-    getDoctorInfo()
-  }, [id, router]) //eslint-disable-line
+    if (router.isReady) {
+      getDoctorInfo()
+    }
+  }, [id, router, router.isReady]) //eslint-disable-line
 
   return (
     <div className='flex flex-col lg:flex-row gap-8 items-center'>

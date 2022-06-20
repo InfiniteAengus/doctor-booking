@@ -10,6 +10,7 @@ import { apiGetDoctorInfo, apiGetBookings } from '/utils/api'
 
 const BookPage = () => {
   const router = useRouter()
+
   const { id } = router.query
 
   const [doctorInfo, setDoctorInfo] = useState({})
@@ -21,9 +22,9 @@ const BookPage = () => {
     setSelectedInfo(info)
   }
 
-  const getDoctorInfo = async () => {
+  const getDoctorInfo = async (doctorId) => {
     try {
-      const res = await apiGetDoctorInfo(id)
+      const res = await apiGetDoctorInfo(doctorId)
       setDoctorInfo(res)
     } catch {
       setDoctorInfo({})
@@ -41,9 +42,11 @@ const BookPage = () => {
   }
 
   useEffect(() => {
-    getDoctorInfo()
-    getBookingInfo()
-  }, [id, router]) //eslint-disable-line
+    if (router.isReady) {
+      getDoctorInfo(id)
+      getBookingInfo()
+    }
+  }, [router, router.isReady]) //eslint-disable-line
 
   return (
     <div>
