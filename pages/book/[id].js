@@ -61,7 +61,7 @@ const BookPage = () => {
             height='130px'
             className='rounded-md border-4 border-white'
           />
-          <h2 className='text-white'>Dr.Loyd Wilson</h2>
+          <h4 className='text-white'>Dr.{doctorInfo.name}</h4>
         </div>
         <div className='flex gap-2'>
           <SocialIconLinks type='twitter' />
