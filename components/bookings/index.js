@@ -3,6 +3,7 @@ import Button from '../button'
 
 import { getTime } from '/utils/helper'
 import { apiPostBooking } from '/utils/api'
+import moment from 'moment'
 
 const TimeButton = (props) => {
   const { time, name } = props
@@ -19,13 +20,15 @@ const TimeButton = (props) => {
 }
 
 const Bookings = (props) => {
-  const { opening_hours, data, date, doctorId } = props
+  const { opening_hours, data, date, doctorId, onConfirm } = props
 
   const [bookingData, setBookingData] = useState({
     hour: '00',
     min: '00',
     name: '',
   })
+
+  console.log(opening_hours, data)
 
   const validation = useMemo(() => {
     //when the name is empty
@@ -34,18 +37,19 @@ const Bookings = (props) => {
     //when the time is less than now
     const today = new Date()
     if (
+      date === moment(today).format('YYYY-MM-DD') &&
       Number(bookingData.hour + '.' + bookingData.min) <
-      Number(today.getHours() + '.' + today.getMinutes())
+        Number(today.getHours() + '.' + today.getMinutes())
     )
       return false
 
+    //when the time is in out of range of working time
     if (
       Number(bookingData.hour + '.' + bookingData.min) <
         Number(opening_hours?.start) ||
       Number(bookingData.hour + '.' + bookingData.min) + 1 >
         Number(opening_hours?.end)
     )
-      //when the time is in out of range of working time
       return false
 
     // when there is already a schedule
@@ -56,8 +60,8 @@ const Bookings = (props) => {
         Number(d.start) - 1 < Number(bookingData.hour + '.' + bookingData.min)
     )
 
-    return ind === -1 ? true : false
-  }, [bookingData]) //eslint-disable-line
+    return data?.length === 0 || ind === -1 ? true : false
+  }, [bookingData, date, opening_hours, data]) //eslint-disable-line
 
   const sortData = useCallback(
     (data) => {
@@ -72,13 +76,14 @@ const Bookings = (props) => {
     try {
       await apiPostBooking({
         name: bookingData.name,
-        start: bookingData.hour + '.' + bookingData.min,
+        start: Number(bookingData.hour + '.' + bookingData.min),
         doctorId: doctorId,
         date: date,
         status: 'cancelled',
       })
 
       alert('successfully booked')
+      onConfirm()
     } catch {}
   }
 

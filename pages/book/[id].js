@@ -91,6 +91,7 @@ const BookPage = () => {
               opening_hours={selectedInfo?.opening_hours}
               date={selectedInfo?.date}
               doctorId={id}
+              onConfirm={getBookingInfo}
             />
           </div>
         </div>

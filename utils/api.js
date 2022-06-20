@@ -35,7 +35,7 @@ export const apiGetBookings = () =>
 export const apiPostBooking = (data) =>
   new Promise(async (resolve, reject) => {
     try {
-      const res = api.post(`${api_url}/booking`, { data })
+      const res = api.post(`${api_url}/booking`, data)
       return resolve(res)
     } catch {
       return reject()
