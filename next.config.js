@@ -13,6 +13,10 @@ const nextConfig = {
       path.join(__dirname, 'components'),
     ],
   },
+  env: {
+    REACT_APP_API_KEY: process.env.REACT_APP_API_KEY,
+    REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+  },
 }
 
 module.exports = nextConfig

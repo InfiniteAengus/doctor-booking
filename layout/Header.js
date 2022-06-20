@@ -6,7 +6,16 @@ const Header = () => {
     <header className='shadow-md'>
       <div className='container h-16 p-3'>
         <div className='max-w-[150px] h-full relative'>
-          <Image src='/logo.png' alt='logo' layout='fill' objectFit='contain' />
+          <Link href='/'>
+            <a>
+              <Image
+                src='/logo.png'
+                alt='logo'
+                layout='fill'
+                objectFit='contain'
+              />
+            </a>
+          </Link>
         </div>
       </div>
     </header>

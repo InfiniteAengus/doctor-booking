@@ -1,9 +1,13 @@
 import React, { useState, useCallback } from 'react'
+import moment from 'moment'
+const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
 
-const weekDays = ['SUN', 'MON', 'TUE', 'WED', 'TUE', 'FRI', 'SAT']
+const dateFormat = (date) => {
+  return moment(date).format('YYYY-MM-DD')
+}
 
 const Calendar = (props) => {
-  const { opening_hours } = props
+  const { opening_hours, onSelect } = props
   const [currentDate, setCurrentDate] = useState(
     new Date(new Date().getFullYear(), new Date().getMonth(), 1)
   )
@@ -25,7 +29,9 @@ const Calendar = (props) => {
 
   const isDisable = useCallback(
     (date) => {
-      if (date.getTime() < new Date().getTime()) {
+      let tempDate = new Date()
+      tempDate.setDate(new Date().getDate() - 1)
+      if (date.getTime() < tempDate.getTime()) {
         return true
       }
 
@@ -51,7 +57,14 @@ const Calendar = (props) => {
 
   const onDayClick = (date) => {
     if (!isDisable(date)) {
+      const ind = opening_hours?.findIndex(
+        (d) => d.day === weekDays[date.getDay()]
+      )
       setSelectedDate(date)
+      onSelect({
+        opening_hours: opening_hours?.[ind],
+        date: dateFormat(date),
+      })
     }
   }
 

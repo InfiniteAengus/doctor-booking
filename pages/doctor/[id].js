@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
+import { apiGetDoctorInfo } from '/utils/api'
 
 import SocialIconLink from '/components/sociallinks'
 import Button from '/components/button'
@@ -22,66 +24,23 @@ const Availability = (props) => {
 
 const DoctorPage = () => {
   const router = useRouter()
-  const [info, setInfo] = useState({
-    id: 'M2159',
-    address: {
-      district: 'Kwun Tong',
-      line_1: 'Unit 4, Floor 5, Block F',
-      line_2: 'Boom Building',
-    },
-    description:
-      'I have been engaged in all kinds of Surgery (thyroid glands, mammary glands, esophageal diseases, gastrointestinal diseases, hepatobiliary and pancreatic diseases, vascular diseases, and endoscopic surgery), emergency, and anesthesia works for about 20 years.In addition, I also have the experience as the director of a clinic in a rural area.',
-    name: 'KWOK KWAN MAN',
-    opening_hours: [
-      {
-        day: 'TUE',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'FRI',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'SUN',
-        end: '18.00',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'MON',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'THU',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'WED',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-      {
-        day: 'SAT',
-        end: '19.50',
-        isClosed: false,
-        start: '9.50',
-      },
-    ],
-  })
+  const [info, setInfo] = useState({})
   const { id } = router.query
+
+  const getDoctorInfo = async () => {
+    try {
+      const res = await apiGetDoctorInfo(id)
+      setInfo(res)
+    } catch {
+      setInfo({})
+    }
+  }
 
   const handleClick = () => {
     router.push(`/book/${id}`)
   }
+
+  useEffect(() => {}, [])
 
   return (
     <div className='flex flex-col lg:flex-row gap-8 items-center'>
