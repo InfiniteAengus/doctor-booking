@@ -34,8 +34,8 @@ const BookPage = () => {
   const getBookingInfo = async () => {
     try {
       const res = await apiGetBookings()
-      res.filter((booking) => booking.doctorId == doctorInfo.id)
-      setBookingInfo(res)
+      const fil = res.filter((booking) => booking.doctorId === doctorInfo.id)
+      setBookingInfo(fil)
     } catch {
       setBookingInfo([])
     }
