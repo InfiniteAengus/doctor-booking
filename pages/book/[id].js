@@ -43,7 +43,7 @@ const BookPage = () => {
   useEffect(() => {
     getDoctorInfo()
     getBookingInfo()
-  }, [id]) //eslint-disable-line
+  }, [id, router]) //eslint-disable-line
 
   return (
     <div>
