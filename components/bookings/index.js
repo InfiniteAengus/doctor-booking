@@ -21,7 +21,11 @@ const TimeButton = (props) => {
 const Bookings = (props) => {
   const { opening_hours, data, date, doctorId } = props
 
-  const [bookingData, setBookingData] = useState({})
+  const [bookingData, setBookingData] = useState({
+    hour: '00',
+    min: '00',
+    name: '',
+  })
 
   const validation = useMemo(() => {
     //when the name is empty
