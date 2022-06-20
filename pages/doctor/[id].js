@@ -46,11 +46,11 @@ const DoctorPage = () => {
     <div className='flex flex-col lg:flex-row gap-8 items-center'>
       <img src='/doctors/doctor_3.png' alt='doctor' />
       <div className='flex flex-col gap-5 items-center lg:items-baseline'>
-        <h2>{info.name}</h2>
-        <p>{info.description}</p>
+        <h2>{info?.name}</h2>
+        <p>{info?.description}</p>
         <p>
-          Address: {info.address.district} ,{info.address.line_1} ,
-          {info.address.line_2}
+          Address: {info?.address?.district} ,{info?.address?.line_1} ,
+          {info?.address?.line_2}
         </p>
         <div className='flex gap-2'>
           <SocialIconLink type='twitter' />
