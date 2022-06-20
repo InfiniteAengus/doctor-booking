@@ -40,7 +40,9 @@ const DoctorPage = () => {
     router.push(`/book/${id}`)
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    getDoctorInfo()
+  }, [id]) //eslint-disable-line
 
   return (
     <div className='flex flex-col lg:flex-row gap-8 items-center'>
