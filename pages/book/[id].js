@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import moment from 'moment'
 
 import SocialIconLinks from '/components/sociallinks'
 import Calendar from '/components/calendar'
@@ -16,7 +17,9 @@ const BookPage = () => {
   const [doctorInfo, setDoctorInfo] = useState({})
   const [bookingInfo, setBookingInfo] = useState([])
 
-  const [selectedInfo, setSelectedInfo] = useState()
+  const [selectedInfo, setSelectedInfo] = useState({
+    date: moment().format('YYYY-MM-DD'),
+  })
 
   const handleSelectDate = (info) => {
     setSelectedInfo(info)
@@ -43,8 +46,10 @@ const BookPage = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      getDoctorInfo(id)
-      getBookingInfo()
+      ;(async () => {
+        await getDoctorInfo(id)
+        await getBookingInfo()
+      })()
     }
   }, [router, router.isReady]) //eslint-disable-line
 
@@ -81,11 +86,7 @@ const BookPage = () => {
           </div>
           <div className='grow'>
             <Bookings
-              data={[
-                ...new Set(
-                  bookingInfo?.filter((t) => t.date === selectedInfo?.date)
-                ),
-              ]}
+              data={bookingInfo?.filter((t) => t.date === selectedInfo?.date)}
               opening_hours={selectedInfo?.opening_hours}
               date={selectedInfo?.date}
               doctorId={id}
