@@ -68,7 +68,7 @@ const DoctorPage = () => {
         <div className='flex gap-2 flex-row lg:flex-col'>
           {info.opening_hours?.map((day) => (
             <Availability
-              key={day}
+              key={day.day}
               weekDay={day.day}
               start={day.start}
               end={day.end}
