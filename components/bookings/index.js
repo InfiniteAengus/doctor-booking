@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
+import Image from 'next/image'
 import Button from '../button'
 
 import { getTime } from '/utils/helper'
@@ -8,12 +9,14 @@ import moment from 'moment'
 const TimeButton = (props) => {
   const { time, name } = props
   return (
-    <button className='bg-primary-component-color text-white block rounded-md p-3 relative flex items-center justify-center'>
+    <button className='bg-primary-component-color text-white rounded-md p-3 relative flex items-center justify-center'>
       {time}-{name}
-      <img
+      <Image
         src='/icons/checked.svg'
         alt='checked'
         className='invert absolute right-5'
+        width='10px'
+        height='10px'
       />
     </button>
   )
@@ -27,8 +30,6 @@ const Bookings = (props) => {
     min: '00',
     name: '',
   })
-
-  console.log(opening_hours, data)
 
   const validation = useMemo(() => {
     //when the name is empty

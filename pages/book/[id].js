@@ -2,16 +2,11 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
-import moment from 'moment'
-
 import SocialIconLinks from '/components/sociallinks'
 import Calendar from '/components/calendar'
 import Bookings from '/components/bookings'
 
 import { apiGetDoctorInfo, apiGetBookings } from '/utils/api'
-
-import doctors from '/mockup/doctors'
-import bookings from '/mockup/bookings'
 
 const BookPage = () => {
   const router = useRouter()
